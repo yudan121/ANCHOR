@@ -2,15 +2,13 @@
 
 ANCHOR (**AN**notating **C**ells with **H**ierarchical marker-**O**riented **R**egularization) is a Python package for marker-guided cell-type annotation in paired RNA-protein single-cell or spatial data. ANCHOR combines a labeled scRNA-seq reference, an RNA-protein query dataset, and a user-provided hierarchical protein marker tree through a teacher-student training framework.
 
-The thesis experiments were generated with the v1 thesis-compatible release. The v2 release keeps the same teacher, anchor selection, student training, and safety-guard pipeline, and updates only the node-wise rho policy used for the student conditional KL loss.
+The experiments were generated with the v1 release. The v2 release keeps the same teacher, anchor selection, student training, and safety-guard pipeline, and updates only the node-wise rho policy used for the student conditional KL loss.
 
 ## Method overview
 
 ![ANCHOR method overview](docs/method.png)
 
 **Overview of the ANCHOR framework.** **(A)** ANCHOR takes as input a labeled scRNA-seq reference, an unlabeled RNA-protein query, and a hierarchical marker tree whose nodes carry positive (`+`) and negative (`-`) protein markers. Solid branches denote reference-labeled types; dashed branches denote user-defined subtypes resolved through markers alone. **(B)** The teacher model jointly trains on reference and query via a VAE-based encoder-decoder. Reference labels supervise the classifier, augmented by anchor pseudo-labels for query cells. **(C)** Anchors are query cells for which classifier prediction, protein marker score, and KNN purity agree. Selected anchors occupy unambiguous positions in the embedding. **(D)** The student model trains on query cells only, using teacher latent features and protein measurements as input. It is guided by anchor pseudo-labels, a rank loss that aligns predicted probabilities with marker-score ordering, and a KL term with node-wise adaptive weighting. **(E)** Final annotations integrate RNA-derived structure with protein-resolved cell states.
-
-If the PNG preview does not render in your environment, see `docs/method.pdf`.
 
 ## Installation
 
@@ -104,7 +102,7 @@ Minimal example:
 
 ## Expected output
 
-Each run writes a run directory containing teacher rounds, student outputs, node-wise rho audit tables, selected anchors, metrics when query labels are available, and a final decision report. If the student safety guard detects excessive loss of teacher-supported rare classes, ANCHOR falls back to the round-2 teacher output for the final annotation.
+Each run writes a run directory containing teacher rounds, student outputs, node-wise rho audit tables, selected anchors, metrics when query labels are available, and a final decision report. If the student safety guard detects excessive loss of teacher-supported rare classes, ANCHOR falls back to the teacher output for the final annotation.
 
 ## Reproducibility
 
@@ -120,13 +118,26 @@ The `reproduce/` directory contains scripts for the ANCHOR experiments described
 - `xenium_ccrcc_full_mode`
 - `xenium_ccrcc_b_plasma_partial_label_mode`
 
-The scripts use portable placeholders and environment variables rather than local machine paths. See `reproduce/README.md` for details.
+See `reproduce/README.md` for details.
 
 ## Data availability
 
 The processed input files for reproducing the ANCHOR experiments will be deposited on Zenodo. Zenodo DOI: **coming soon**.
 
-The GitHub repository intentionally does not track `.h5ad` files, trained model checkpoints, logs, or result tables.
+The original public datasets used in the ANCHOR experiments are available from the following sources:
+
+- The bone marrow mononuclear cells dataset (BMMC) profiled by CITE-seq is from the [NeurIPS 2021 Multimodal Single-Cell Data Integration Challenge](https://openproblems.bio/events/2021-09_neurips) and is available through the [Gene Expression Omnibus (GEO)](https://www.ncbi.nlm.nih.gov/geo/) under accession [GSE194122](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE194122).
+
+- The human bone marrow proteo-genomic atlas (MarrowAtlas) profiled by CITE-seq is available through GEO under accession [GSE245108](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE245108).
+
+- The human bone marrow dataset (BM AbSeq), generated using BD Rhapsody Whole Transcriptome Analysis with AbSeq protein profiling, is available through [figshare](https://figshare.com/projects/Single-cell_proteo-genomic_reference_maps_of_the_human_hematopoietic_system/94469). We used the [healthy-donor dataset with 97 surface markers](https://figshare.com/articles/dataset/Expression_of_97_surface_markers_and_RNA_transcriptome_wide_in_13165_cells_from_a_healthy_young_bone_marrow_donor/13397987).
+
+- The peripheral blood mononuclear cells dataset (PBMC) profiled by CITE-seq is available through GEO under accession [GSE164378](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE164378).
+
+- The human renal cell carcinoma dataset profiled by the Xenium In Situ Gene and Protein Expression with Cell Segmentation Staining workflow is available from the [10x Genomics project website](https://www.10xgenomics.com/datasets/xenium-protein-ffpe-human-renal-carcinoma).
+
+- The labeled human clear cell renal cell carcinoma reference dataset was profiled by scRNA-seq. The raw data are available through the NCBI Trace archive at [SRZ190804](https://trace.ncbi.nlm.nih.gov/Traces/index.html?analysis=SRZ190804). The processed public collection is available through [CZ CELLxGENE](https://cellxgene.cziscience.com/collections/3f50314f-bdc9-40c6-8e4a-b0901ebfbe4c).
+
 
 ## System requirements
 
@@ -134,13 +145,5 @@ ANCHOR depends on `anndata`, `scanpy`, `scvi-tools`, `torch`, `numpy`, `pandas`,
 
 ## Version history
 
-- `v1.0.0-formal-compatible`: thesis-compatible ANCHOR release used for the primary reported experiments.
+- `v1.0.0-formal-compatible`: ANCHOR release used for the primary reported experiments.
 - `v2.0.0-hybrid-rho`: same training pipeline with the hybrid rho policy, which simplifies the protein-power and teacher-challenge components while retaining the RNA-protection term.
-
-## Citation
-
-Citation information will be added after manuscript release.
-
-## License
-
-This project is licensed under the GNU General Public License v3.0. See `LICENSE` for details.
