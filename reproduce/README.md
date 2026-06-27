@@ -1,6 +1,6 @@
 # Reproducing ANCHOR experiments
 
-This folder contains portable scripts for running ANCHOR on the datasets used in the thesis. The scripts are organized by thesis-facing dataset and mode names rather than internal experiment names.
+This folder contains portable scripts for running ANCHOR on the datasets used in our experiments. The scripts are organized by dataset and mode names.
 
 ## Data layout
 
@@ -12,7 +12,7 @@ Each dataset folder expects:
 <dataset>/data/marker_tree.json
 ```
 
-The marker trees are included in this repository. The `.h5ad` files and optional totalVI initialization models are not tracked by GitHub and will be distributed separately through Zenodo. Zenodo DOI: **coming soon**.
+The marker trees are included in this repository. The `.h5ad` files are not tracked by GitHub and are distributed separately through Zenodo.
 
 ## Common environment variables
 
@@ -34,5 +34,3 @@ ANCHOR_RESULTS_DIR=path/to/results \
 ANCHOR_TOTALVI_INIT_DIR=path/to/totalvi_init_model \
 python run_anchor_v1.py
 ```
-
-To reproduce v1 after the repository has moved to v2, either check out `v1.0.0-formal-compatible` or set `ANCHOR_PACKAGE_DIR` to a separate v1 checkout.
