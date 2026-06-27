@@ -18,7 +18,7 @@ The marker trees are included in this repository. The `.h5ad` files are not trac
 
 - `ANCHOR_DATA_DIR`: directory containing `reference.h5ad`, `query.h5ad`, and `marker_tree.json` for one dataset. Defaults to `<dataset>/data`.
 - `ANCHOR_RESULTS_DIR`: output root. Defaults to `reproduce/results/<version>`.
-- `ANCHOR_RUN_NAME`: run name. Defaults to a stable thesis-style name.
+- `ANCHOR_RUN_NAME`: run name. Defaults to a stable dataset-specific name.
 - `ANCHOR_TOTALVI_INIT_DIR`: optional path to an existing `totalvi_init_model` directory. If unset, ANCHOR trains the initialization from scratch.
 - `ANCHOR_SCRATCH=1`: force training totalVI initialization from scratch, even if `ANCHOR_TOTALVI_INIT_DIR` is set.
 - `ANCHOR_BATCH_KEY`: batch column in `.obs`; default `batch`.

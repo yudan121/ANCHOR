@@ -102,7 +102,7 @@ Each run writes a run directory containing teacher rounds, student outputs, node
 
 ## Reproducibility
 
-The `reproduce/` directory contains scripts for the ANCHOR experiments described in the thesis:
+The `reproduce/` directory contains scripts for the reported ANCHOR experiments:
 
 - `simulation_full_mode`
 - `simulation_partial_label_mode`
