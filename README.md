@@ -2,8 +2,6 @@
 
 ANCHOR (**AN**notating **C**ells with **H**ierarchical marker-**O**riented **R**egularization) is a Python package for marker-guided cell-type annotation in paired RNA-protein single-cell or spatial data. ANCHOR combines a labeled scRNA-seq reference, an RNA-protein query dataset, and a user-provided hierarchical protein marker tree through a teacher-student training framework.
 
-The experiments were generated with the v1 release. The v2 release keeps the same teacher, anchor selection, student training, and safety-guard pipeline, and updates only the node-wise rho policy used for the student conditional KL loss.
-
 ## Method overview
 
 ![ANCHOR method overview](docs/method.png)
@@ -13,12 +11,10 @@ The experiments were generated with the v1 release. The v2 release keeps the sam
 ## Installation
 
 ```bash
-git clone <ANCHOR_REPOSITORY_URL>
+git clone https://github.com/yudan121/ANCHOR.git
 cd ANCHOR
 python -m pip install -e .
 ```
-
-ANCHOR is developed for Python 3.10 or newer. A CUDA-capable GPU is strongly recommended for the full teacher-student workflow.
 
 ## Quick start
 
@@ -145,5 +141,7 @@ ANCHOR depends on `anndata`, `scanpy`, `scvi-tools`, `torch`, `numpy`, `pandas`,
 
 ## Version history
 
+The experiments were generated with the v1 release. The v2 release keeps the same teacher, anchor selection, student training, and safety-guard pipeline, and updates only the node-wise rho policy used for the student conditional KL loss.
+
 - `v1.0.0-formal-compatible`: ANCHOR release used for the primary reported experiments.
-- `v2.0.0-hybrid-rho`: same training pipeline with the hybrid rho policy, which simplifies the protein-power and teacher-challenge components while retaining the RNA-protection term.
+- `v2.0.0-hybrid-rho`: same training pipeline with the hybrid rho policy, which simplifies the protein-power and teacher-challenge components.
