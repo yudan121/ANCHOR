@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "anchor-multimodal"
-version = "1.0.0"
+version = "2.0.0"
 description = "ANCHOR: marker-guided RNA-protein cell type annotation"
 readme = "README.md"
 requires-python = ">=3.10"

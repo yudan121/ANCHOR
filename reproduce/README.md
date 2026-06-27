@@ -36,3 +36,5 @@ python run_anchor_v1.py
 ```
 
 To reproduce v1 after the repository has moved to v2, either check out `v1.0.0-formal-compatible` or set `ANCHOR_PACKAGE_DIR` to a separate v1 checkout.
+
+To run v2 from the main branch, use `python run_anchor_v2.py` in the same dataset folder.

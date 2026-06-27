@@ -1,3 +1,17 @@
+"""Node-wise teacher-weight policy for student conditional KL.
+
+Each internal tree node receives a teacher weight based on protein power,
+teacher challenge and RNA protection.  The resulting table is also converted
+into conditional-KL specifications consumed by the student training loop.
+
+Hybrid rho v1 shares the same thresholds and three-level rho assignment as the
+formal-compatible policy.  Its intentional change is limited to the protein
+power / teacher-challenge signal: marker support is computed by direct child
+score argmax and top1-vs-top2 margin instead of the formal-compatible binary
+GMM split.  RNA protection remains the reference child validation trust times
+query teacher-latent RNA structure trust.
+"""
+
 from __future__ import annotations
 
 import json
@@ -373,11 +387,13 @@ def compute_rho_policy_audit(
     policy_params: Mapping[str, float | int] | None = None,
     fail_on_missing_audit: bool = True,
 ) -> dict[str, Any]:
-    """Compute the ANCHOR rho policy audit from ANCHOR bundles.
+    """Compute node-wise teacher weights for the student conditional KL.
 
-    This is the dataset-free form of the original tree reliability rho audit.
-    Query labels are never used for the policy rows; they are used only in the
-    optional diagnostic table when available.
+    The policy combines three node-level signals: protein power, teacher
+    challenge and RNA protection.  Protein power and challenge determine how
+    strongly protein evidence argues for release, while RNA protection keeps
+    the student close to the teacher on branches that remain well supported by
+    RNA-derived evidence.
     """
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -393,13 +409,13 @@ def compute_rho_policy_audit(
         teacher=teacher,
         reference_name=reference_name,
     )
-    query_index = bundle.query_index
-    soft = bundle.teacher_soft.reindex(query_index).loc[:, bundle.label_names].astype(np.float32)
-    protein_z = _robust_z(bundle.protein_arcsinh).reindex(query_index)
+    soft = bundle.teacher_soft.reindex(bundle.query_index).loc[:, bundle.label_names].astype(np.float32)
+    protein_z = _robust_z(bundle.protein_arcsinh).reindex(bundle.query_index)
     z_query = np.asarray(bundle.z_teacher, dtype=np.float32) if bundle.z_teacher is not None else None
     partial_nodes = {str(x) for x in bundle.partial_label_spec}
     prior_spec = bundle.prior_spec
     label_names = [str(x) for x in bundle.label_names]
+    query_index = bundle.query_index
 
     children_by_node = {
         str(parent): [str(child) for child in children]
@@ -408,6 +424,7 @@ def compute_rho_policy_audit(
     node_rows: list[dict[str, Any]] = []
     label_diag_rows: list[dict[str, Any]] = []
     cell_rows: list[pd.DataFrame] = []
+
     for node, raw_children in sorted(children_by_node.items()):
         children: list[str] = []
         child_leaf_sets: list[set[str]] = []
@@ -421,11 +438,13 @@ def compute_rho_policy_audit(
         parent_leaves = _descendant_leaves(prior_spec, node, label_names)
         if len(children) < 2 or not parent_leaves:
             continue
-        direct_children_all_leaf = bool(all(str(child) in set(label_names) for child in children))
 
+        direct_children_all_leaf = bool(all(str(child) in set(label_names) for child in children))
         parent_mass = soft.loc[:, parent_leaves].sum(axis=1).astype(float)
         parent_pool = parent_mass.ge(float(parent_pool_threshold)).fillna(False)
+        pool_mask = parent_pool.to_numpy(dtype=bool)
         n_parent_pool = int(parent_pool.sum())
+
         child_mass = np.stack([soft.loc[:, leaves].sum(axis=1).to_numpy(dtype=float) for leaves in child_leaf_lists], axis=1)
         child_cond = child_mass / np.clip(parent_mass.to_numpy(dtype=float).reshape(-1, 1), 1e-8, None)
         teacher_child_idx = np.argmax(child_cond, axis=1)
@@ -451,68 +470,45 @@ def compute_rho_policy_audit(
 
         marker_child = np.full(len(query_index), None, dtype=object)
         marker_valid_pool = 0
-        score_sep_z = np.nan
-        cluster_balance = np.nan
-        minority_cluster_n = np.nan
         median_marker_margin = np.nan
         child_support_min_fraction = np.nan
         protein_power = 0.0
         marker_pred_method = "unavailable"
+
         if marker_complete and n_parent_pool >= 20:
             pool_scores = marker_scores.loc[parent_pool].to_numpy(dtype=float)
             finite = np.isfinite(pool_scores).all(axis=1)
             marker_valid_pool = int(finite.sum())
-            pool_positions = np.where(parent_pool.to_numpy())[0]
+            pool_positions = np.where(pool_mask)[0]
             valid_positions = pool_positions[finite]
             if marker_valid_pool >= 20:
+                # Hybrid rho v1 intentionally uses the same direct child-score
+                # assignment for binary and multi-child branches.  This is the
+                # simplified protein-power/challenge signal relative to v1.
                 score_order = np.argsort(pool_scores[finite], axis=1)
-                top = pool_scores[finite][np.arange(marker_valid_pool), score_order[:, -1]]
+                argmax = score_order[:, -1]
+                top = pool_scores[finite][np.arange(marker_valid_pool), argmax]
                 second = pool_scores[finite][np.arange(marker_valid_pool), score_order[:, -2]]
                 margins = top - second
                 median_marker_margin = float(np.nanmedian(margins))
-                if len(children) == 2:
-                    marker_pred_method = "binary_gmm"
-                    delta = pool_scores[finite][:, 1] - pool_scores[finite][:, 0]
-                    gmm_pred, gmm_metrics = _binary_gmm(delta, seed=seed)
-                    good = gmm_pred >= 0
-                    marker_child[valid_positions[good]] = np.asarray(children, dtype=object)[gmm_pred[good]]
-                    score_sep_z = float(gmm_metrics["score_sep_z"])
-                    cluster_balance = float(gmm_metrics["cluster_balance"])
-                    minority_cluster_n = float(gmm_metrics["minority_cluster_n"])
-                    margin_score = _scale01(abs(float(np.nanmedian(np.abs(delta)))), 0.25, 1.50)
-                    sep_score = _scale01(score_sep_z, 1.0, 3.0)
-                    balance_score = float(np.clip(cluster_balance / 0.35, 0.0, 1.0)) if np.isfinite(cluster_balance) else 0.0
-                    protein_power = float(np.clip(0.45 * sep_score + 0.35 * margin_score + 0.20 * balance_score, 0.0, 1.0))
-                    child_support_min_fraction = cluster_balance
-                else:
-                    marker_pred_method = "score_argmax_multichild"
-                    argmax = score_order[:, -1]
-                    marker_child[valid_positions] = np.asarray(children, dtype=object)[argmax]
-                    counts = np.bincount(argmax, minlength=len(children)).astype(float)
-                    fractions = counts / max(float(counts.sum()), 1.0)
-                    child_support_min_fraction = float(fractions.min())
-                    margin_score = _scale01(median_marker_margin, 0.25, 1.50)
-                    balance_score = float(np.clip(child_support_min_fraction / max(0.5 / len(children), 1e-8), 0.0, 1.0))
-                    protein_power = float(np.clip(0.65 * margin_score + 0.35 * balance_score, 0.0, 0.65))
+                marker_child[valid_positions] = np.asarray(children, dtype=object)[argmax]
+                counts = np.bincount(argmax, minlength=len(children)).astype(float)
+                fractions = counts / max(float(counts.sum()), 1.0)
+                child_support_min_fraction = float(fractions.min())
+                margin_score = _scale01(median_marker_margin, 0.25, 1.50)
+                balance_score = float(np.clip(child_support_min_fraction / max(0.5 / len(children), 1e-8), 0.0, 1.0))
+                protein_power = float(np.clip(0.50 * margin_score + 0.50 * balance_score, 0.0, 1.0))
+                marker_pred_method = "simplified_score_argmax"
 
-        pool_mask = parent_pool.to_numpy(dtype=bool)
-        valid_marker_mask = pool_mask & pd.Series(marker_child, index=query_index).notna().to_numpy()
+        marker_series = pd.Series(marker_child, index=query_index)
+        valid_marker_mask = pool_mask & marker_series.notna().to_numpy()
         marker_teacher_disagreement = (
-            float(np.mean(pd.Series(marker_child, index=query_index).loc[valid_marker_mask].astype(str).to_numpy() != teacher_child[valid_marker_mask]))
+            float(np.mean(marker_series.loc[valid_marker_mask].astype(str).to_numpy() != teacher_child[valid_marker_mask]))
             if int(valid_marker_mask.sum())
             else 0.0
         )
-        teacher_uncertainty = 0.0
-        if n_parent_pool:
-            teacher_uncertainty = float(
-                np.clip(
-                    0.5 * np.nanmean(teacher_child_entropy[pool_mask])
-                    + 0.5 * (1.0 - np.nanmedian(teacher_margin[pool_mask])),
-                    0.0,
-                    1.0,
-                )
-            )
-
+        teacher_uncertainty = float(np.nanmean(teacher_child_entropy[pool_mask])) if n_parent_pool else 0.0
+        teacher_margin_pool = float(np.nanmedian(teacher_margin[pool_mask])) if n_parent_pool else 0.0
         ref_child_acc = np.nan
         ref_child_n = 0
         rna_trust_source = "unavailable_hidden_or_mixed" if str(node) in partial_nodes else "unavailable"
@@ -525,14 +521,6 @@ def compute_rho_policy_audit(
                 validation_mask=validation_mask,
             )
         rna_trust_floor = _rna_trust_floor_from_accuracy(ref_child_acc)
-        n_descendant_leaves = len(parent_leaves)
-        locality_weight = float(np.clip(1.25 / float(max(n_descendant_leaves, 1)), 0.05, 1.0))
-        release_driver = float(max(marker_teacher_disagreement, teacher_uncertainty))
-        release_score = float(np.clip(protein_power * release_driver * locality_weight, 0.0, 1.0))
-        rho = float(np.clip(max(rna_trust_floor, 1.0 - float(release_strength) * release_score), 0.0, 1.0))
-        if protein_power <= 1e-8:
-            rho = 1.0
-            release_score = 0.0
         rna_structure = _query_rna_structure_metrics(
             z_query=z_query,
             pool_mask=pool_mask,
@@ -542,9 +530,21 @@ def compute_rho_policy_audit(
             policy_params=params,
         )
         query_rna_structure_trust = float(rna_structure["query_rna_structure_trust_v"])
+        # Keep the formal-compatible RNA protection term: trusted reference
+        # child validation and clear query RNA structure protect teacher KL.
         rna_protection = float(np.clip(rna_trust_floor * query_rna_structure_trust, 0.0, 1.0))
-        challenge = float(np.clip(protein_power * release_driver, 0.0, 1.0))
+
+        n_descendant_leaves = len(parent_leaves)
+        locality_weight = float(np.clip(1.25 / float(max(n_descendant_leaves, 1)), 0.05, 1.0))
+        release_driver = float(max(marker_teacher_disagreement, teacher_uncertainty))
+        release_score = float(np.clip(protein_power * release_driver * locality_weight, 0.0, 1.0))
+        rho = float(np.clip(max(rna_protection, 1.0 - float(release_strength) * release_score), 0.0, 1.0))
+        if protein_power <= 1e-8:
+            rho = 1.0
+            release_score = 0.0
+
         policy_locality = _policy_locality_weight(n_descendant_leaves, direct_children_all_leaf)
+        challenge = float(np.clip(protein_power * release_driver, 0.0, 1.0))
         policy, rho_discrete, policy_reason = _assign_rho_policy(
             marker_complete=bool(marker_complete),
             n_parent_pool=int(n_parent_pool),
@@ -572,14 +572,14 @@ def compute_rho_policy_audit(
             "marker_complete": bool(marker_complete),
             "marker_pred_method": marker_pred_method,
             "marker_valid_pool": int(marker_valid_pool),
-            "score_sep_z": score_sep_z,
-            "cluster_balance": cluster_balance,
-            "minority_cluster_n": minority_cluster_n,
+            "score_sep_z": np.nan,
+            "cluster_balance": np.nan,
+            "minority_cluster_n": np.nan,
             "median_marker_margin": median_marker_margin,
             "child_support_min_fraction": child_support_min_fraction,
             "mean_teacher_child_conf_pool": float(np.nanmean(teacher_child_conf[pool_mask])) if n_parent_pool else np.nan,
             "mean_teacher_child_entropy_pool": float(np.nanmean(teacher_child_entropy[pool_mask])) if n_parent_pool else np.nan,
-            "median_teacher_child_margin_pool": float(np.nanmedian(teacher_margin[pool_mask])) if n_parent_pool else np.nan,
+            "median_teacher_child_margin_pool": teacher_margin_pool if n_parent_pool else np.nan,
             "marker_teacher_disagreement_v": float(marker_teacher_disagreement),
             "teacher_uncertainty_v": float(teacher_uncertainty),
             "protein_power_v": float(protein_power),
@@ -588,7 +588,11 @@ def compute_rho_policy_audit(
             "reference_validation_source": validation_source,
             "rna_trust_source": rna_trust_source,
             "rna_trust_floor_v": float(rna_trust_floor),
-            **rna_structure,
+            "query_rna_knn_child_purity_v": float(rna_structure["query_rna_knn_child_purity_v"]),
+            "query_rna_silhouette_v": float(rna_structure["query_rna_silhouette_v"]),
+            "query_rna_centroid_margin_v": float(rna_structure["query_rna_centroid_margin_v"]),
+            "query_rna_structure_trust_v": float(rna_structure["query_rna_structure_trust_v"]),
+            "query_rna_structure_source": str(rna_structure["query_rna_structure_source"]),
             "rna_protection_v": float(rna_protection),
             "locality_weight_v": float(locality_weight),
             "policy_locality_weight_v": float(policy_locality),
@@ -603,33 +607,33 @@ def compute_rho_policy_audit(
             "teacher_latent_key": "student_bundle_z_teacher",
             "release_strength": float(release_strength),
             "partial_hidden_node": bool(str(node) in partial_nodes),
+            "rho_policy_variant": "hybrid_rho_v1",
         }
         node_rows.append(row)
 
-        cell_rows.append(
-            pd.DataFrame(
-                {
-                    "dataset": str(dataset),
-                    "setting": str(setting),
-                    "teacher_source": str(teacher_source),
-                    "node": str(node),
-                    "cell_id": query_index[pool_mask],
-                    "teacher_parent_prob": parent_mass.loc[parent_pool].to_numpy(dtype=float),
-                    "teacher_child": teacher_child[pool_mask],
-                    "teacher_child_confidence": teacher_child_conf[pool_mask],
-                    "teacher_child_entropy": teacher_child_entropy[pool_mask],
-                    "marker_child": pd.Series(marker_child, index=query_index).loc[parent_pool].astype(object).to_numpy(),
-                    "marker_teacher_disagreement": pd.Series(marker_child, index=query_index).loc[parent_pool].astype(str).to_numpy()
-                    != teacher_child[pool_mask],
-                }
+        if n_parent_pool:
+            cell_rows.append(
+                pd.DataFrame(
+                    {
+                        "dataset": str(dataset),
+                        "setting": str(setting),
+                        "teacher_source": str(teacher_source),
+                        "node": str(node),
+                        "cell_id": query_index[pool_mask],
+                        "teacher_parent_prob": parent_mass.loc[parent_pool].to_numpy(dtype=float),
+                        "teacher_child": teacher_child[pool_mask],
+                        "teacher_child_confidence": teacher_child_conf[pool_mask],
+                        "teacher_child_entropy": teacher_child_entropy[pool_mask],
+                        "marker_child": marker_series.loc[parent_pool].astype(object).to_numpy(),
+                        "marker_teacher_disagreement": marker_series.loc[parent_pool].astype(str).to_numpy() != teacher_child[pool_mask],
+                    }
+                )
             )
-        )
 
         if "true_label" in bundle.query.obs:
             q_label = bundle.query.obs["true_label"].astype(str).reindex(query_index)
             true_child = q_label.map(lambda x: _child_for_label(x, children=children, child_leaf_sets=child_leaf_sets))
             diag_mask = parent_pool & true_child.notna()
-            marker_series = pd.Series(marker_child, index=query_index)
             teacher_series = pd.Series(teacher_child, index=query_index)
             marker_keep = diag_mask & marker_series.notna()
             label_diag = dict(row)
@@ -659,7 +663,7 @@ def compute_rho_policy_audit(
         diag_df = diag_df.sort_values(["setting", "rho_v", "node"], kind="mergesort").reset_index(drop=True)
     cell_df = pd.concat(cell_rows, ignore_index=True) if cell_rows else pd.DataFrame()
     if fail_on_missing_audit and node_df.empty:
-        raise ValueError("rho_policy_conditional requested but rho audit produced no node rows")
+        raise ValueError("rho_policy_conditional requested but simplified rho audit produced no node rows")
 
     paths = {
         "node": output_dir / "rho_node_audit.csv",
@@ -676,21 +680,19 @@ def compute_rho_policy_audit(
     paths["config"].write_text(
         json.dumps(
             {
+                "policy_variant": "hybrid_rho_v1",
                 "seed": int(seed),
                 "parent_pool_threshold": float(parent_pool_threshold),
                 "release_strength": float(release_strength),
-                "formula": "rho_v=max(rna_trust_floor_v, 1-release_strength*protein_power_v*max(disagreement,uncertainty)*locality_weight_v)",
-                "policy_formula": (
-                    "discrete rho uses protein_power * max(marker_teacher_disagreement, teacher_uncertainty) "
-                    "* policy_locality, gated by rna_protection=reference_rna_trust_floor*query_rna_structure_trust"
-                ),
+                "formula": "protein_power=0.5*scaled_top1_top2_marker_margin+0.5*scaled_marker_child_balance; challenge=protein_power*max(marker_teacher_disagreement,teacher_entropy)*locality; rna_protection=reference_child_validation_trust*query_teacher_latent_structure_trust",
+                "policy_formula": "three-level rho assignment using protein_power, challenge, and rna_protection",
                 "policy_params": params,
                 "dataset": str(dataset),
                 "setting": str(setting),
                 "teacher_source": str(teacher_source),
                 "teacher_results_h5ad": str(teacher_results_h5ad),
                 "partial_coarse_nodes": sorted(partial_nodes),
-                "leakage_note": "rho_v uses teacher posterior, query protein marker scores, and reference validation labels only. Query true labels appear only in rho_node_audit_with_label_diag.csv.",
+                "leakage_note": "rho_v uses teacher posterior and query protein marker scores only. Query true labels appear only in rho_node_audit_with_label_diag.csv.",
             },
             indent=2,
             sort_keys=True,
