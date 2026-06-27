@@ -12,7 +12,19 @@ data/marker_tree.json
 
 The marker tree is included. The `.h5ad` files and optional `totalvi_init_model` directory will be provided through Zenodo. Zenodo DOI: **coming soon**.
 
-Example full run:
+You can also regenerate the synthetic inputs locally:
+
+```bash
+python generate_inputs.py
+```
+
+By default this writes to `data/`. To write elsewhere:
+
+```bash
+ANCHOR_SIMULATION_OUTPUT_DIR=path/to/output python generate_inputs.py
+```
+
+Example ANCHOR run:
 
 ```bash
 ANCHOR_DATA_DIR=path/to/simulation_partial_label_mode/data \
