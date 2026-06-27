@@ -1,0 +1,725 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "name": "Naive CD20+ B IGKC+",
+                  "negative_markers": [],
+                  "positive_markers": []
+                },
+                {
+                  "name": "Naive CD20+ B IGKC-",
+                  "negative_markers": [],
+                  "positive_markers": []
+                }
+              ],
+              "name": "Naive_CD20_B",
+              "negative_markers": [
+                "CD27",
+                "CD319",
+                "CD38"
+              ],
+              "positive_markers": [
+                "CD20",
+                "CD21",
+                "CD22",
+                "CD72",
+                "IgD",
+                "IgM"
+              ]
+            },
+            {
+              "children": [
+                {
+                  "name": "B1 B IGKC+",
+                  "negative_markers": [],
+                  "positive_markers": []
+                },
+                {
+                  "name": "B1 B IGKC-",
+                  "negative_markers": [],
+                  "positive_markers": []
+                }
+              ],
+              "name": "B1_B",
+              "negative_markers": [
+                "CD319",
+                "CD38"
+              ],
+              "positive_markers": [
+                "CD19",
+                "CD20",
+                "CD5",
+                "IgM"
+              ]
+            },
+            {
+              "name": "Transitional B",
+              "negative_markers": [
+                "CD27",
+                "CD319"
+              ],
+              "positive_markers": [
+                "CD19",
+                "CD24",
+                "CD38",
+                "IgM"
+              ]
+            },
+            {
+              "children": [
+                {
+                  "name": "Plasma cell IGKC+",
+                  "negative_markers": [],
+                  "positive_markers": []
+                },
+                {
+                  "name": "Plasma cell IGKC-",
+                  "negative_markers": [],
+                  "positive_markers": []
+                }
+              ],
+              "name": "Plasma_cell",
+              "negative_markers": [
+                "CD20",
+                "HLA-DR",
+                "IgD",
+                "IgM"
+              ],
+              "positive_markers": [
+                "CD27",
+                "CD319",
+                "CD38"
+              ]
+            },
+            {
+              "children": [
+                {
+                  "name": "Plasmablast IGKC+",
+                  "negative_markers": [],
+                  "positive_markers": []
+                },
+                {
+                  "name": "Plasmablast IGKC-",
+                  "negative_markers": [],
+                  "positive_markers": []
+                }
+              ],
+              "name": "Plasmablast",
+              "negative_markers": [
+                "CD20",
+                "IgD"
+              ],
+              "positive_markers": [
+                "CD319",
+                "CD38",
+                "CD71"
+              ]
+            }
+          ],
+          "name": "B_lineage",
+          "negative_markers": [
+            "CD14",
+            "CD3",
+            "CD56"
+          ],
+          "positive_markers": [
+            "CD19",
+            "CD20",
+            "CD21",
+            "CD22",
+            "CD72"
+          ]
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "name": "CD4+ T naive",
+                  "negative_markers": [
+                    "CD45RO",
+                    "HLA-DR"
+                  ],
+                  "positive_markers": [
+                    "CD27",
+                    "CD4",
+                    "CD45RA",
+                    "CD7"
+                  ]
+                },
+                {
+                  "children": [
+                    {
+                      "name": "CD4+ T activated",
+                      "negative_markers": [
+                        "CD45RA",
+                        "integrinB7"
+                      ],
+                      "positive_markers": [
+                        "CD4",
+                        "CD45RO"
+                      ]
+                    },
+                    {
+                      "name": "CD4+ T activated integrinB7+",
+                      "negative_markers": [
+                        "CD45RA"
+                      ],
+                      "positive_markers": [
+                        "CD4",
+                        "CD45RO",
+                        "integrinB7"
+                      ]
+                    }
+                  ],
+                  "name": "CD4_integrinB7_axis",
+                  "negative_markers": [
+                    "CD45RA"
+                  ],
+                  "positive_markers": [
+                    "CD4",
+                    "CD45RO"
+                  ]
+                },
+                {
+                  "name": "T reg",
+                  "negative_markers": [
+                    "CD127"
+                  ],
+                  "positive_markers": [
+                    "CD194",
+                    "CD25",
+                    "CD4"
+                  ]
+                }
+              ],
+              "name": "CD4_T",
+              "negative_markers": [
+                "CD8"
+              ],
+              "positive_markers": [
+                "CD4"
+              ]
+            },
+            {
+              "children": [
+                {
+                  "name": "CD8+ T naive",
+                  "negative_markers": [
+                    "CD45RO",
+                    "CD57",
+                    "CD69",
+                    "TIGIT"
+                  ],
+                  "positive_markers": [
+                    "CD27",
+                    "CD45RA",
+                    "CD62L",
+                    "CD8"
+                  ]
+                },
+                {
+                  "children": [
+                    {
+                      "name": "CD8+ T CD57+ CD45RA+",
+                      "negative_markers": [
+                        "CD45RO"
+                      ],
+                      "positive_markers": [
+                        "CD45RA",
+                        "CD57",
+                        "CD8"
+                      ]
+                    },
+                    {
+                      "name": "CD8+ T CD57+ CD45RO+",
+                      "negative_markers": [
+                        "CD45RA"
+                      ],
+                      "positive_markers": [
+                        "CD45RO",
+                        "CD57",
+                        "CD8"
+                      ]
+                    }
+                  ],
+                  "name": "CD8_CD57_axis",
+                  "negative_markers": [
+                    "CD49f",
+                    "CD69",
+                    "TIGIT"
+                  ],
+                  "positive_markers": [
+                    "CD57",
+                    "CD8",
+                    "KLRG1"
+                  ]
+                },
+                {
+                  "children": [
+                    {
+                      "name": "CD8+ T TIGIT+ CD45RA+",
+                      "negative_markers": [
+                        "CD45RO"
+                      ],
+                      "positive_markers": [
+                        "CD45RA",
+                        "CD8",
+                        "TIGIT"
+                      ]
+                    },
+                    {
+                      "name": "CD8+ T TIGIT+ CD45RO+",
+                      "negative_markers": [
+                        "CD45RA"
+                      ],
+                      "positive_markers": [
+                        "CD45RO",
+                        "CD8",
+                        "TIGIT"
+                      ]
+                    }
+                  ],
+                  "name": "CD8_TIGIT_axis",
+                  "negative_markers": [
+                    "CD49f",
+                    "CD57",
+                    "CD69"
+                  ],
+                  "positive_markers": [
+                    "CD8",
+                    "TIGIT"
+                  ]
+                },
+                {
+                  "children": [
+                    {
+                      "name": "CD8+ T CD69+ CD45RA+",
+                      "negative_markers": [
+                        "CD45RO"
+                      ],
+                      "positive_markers": [
+                        "CD45RA",
+                        "CD69",
+                        "CD8"
+                      ]
+                    },
+                    {
+                      "name": "CD8+ T CD69+ CD45RO+",
+                      "negative_markers": [
+                        "CD45RA"
+                      ],
+                      "positive_markers": [
+                        "CD45RO",
+                        "CD69",
+                        "CD8"
+                      ]
+                    }
+                  ],
+                  "name": "CD8_CD69_axis",
+                  "negative_markers": [
+                    "CD49f",
+                    "CD57",
+                    "TIGIT"
+                  ],
+                  "positive_markers": [
+                    "CD69",
+                    "CD8"
+                  ]
+                },
+                {
+                  "name": "CD8+ T CD49f+",
+                  "negative_markers": [
+                    "CD57",
+                    "CD69",
+                    "TIGIT"
+                  ],
+                  "positive_markers": [
+                    "CD49f",
+                    "CD8"
+                  ]
+                }
+              ],
+              "name": "CD8_state_axes",
+              "negative_markers": [
+                "CD4"
+              ],
+              "positive_markers": [
+                "CD8"
+              ]
+            },
+            {
+              "children": [
+                {
+                  "name": "gdT TCRVD2+",
+                  "negative_markers": [
+                    "CD158b"
+                  ],
+                  "positive_markers": [
+                    "TCR",
+                    "TCRVd2"
+                  ]
+                },
+                {
+                  "name": "MAIT",
+                  "negative_markers": [
+                    "CD4"
+                  ],
+                  "positive_markers": [
+                    "CD161",
+                    "CD26",
+                    "TCRVa7.2"
+                  ]
+                }
+              ],
+              "name": "MAIT_dnT_gdTVD2",
+              "negative_markers": [
+                "CD4"
+              ],
+              "positive_markers": [
+                "CD161"
+              ]
+            }
+          ],
+          "name": "T_lineage",
+          "negative_markers": [
+            "CD14",
+            "CD19"
+          ],
+          "positive_markers": [
+            "CD3",
+            "CD5",
+            "TCR"
+          ]
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "NK",
+                      "negative_markers": [
+                        "CD127",
+                        "CD158e1"
+                      ],
+                      "positive_markers": [
+                        "CD122",
+                        "CD16",
+                        "CD335",
+                        "CD56"
+                      ]
+                    },
+                    {
+                      "name": "NK CD158e1+",
+                      "negative_markers": [
+                        "CD127"
+                      ],
+                      "positive_markers": [
+                        "CD122",
+                        "CD158e1",
+                        "CD16",
+                        "CD56"
+                      ]
+                    }
+                  ],
+                  "name": "NK_KIR_axis",
+                  "negative_markers": [
+                    "CD127",
+                    "CD49a"
+                  ],
+                  "positive_markers": [
+                    "CD122",
+                    "CD16",
+                    "CD335",
+                    "CD56"
+                  ]
+                },
+                {
+                  "name": "ILC",
+                  "negative_markers": [
+                    "CD158e1",
+                    "CD16"
+                  ],
+                  "positive_markers": [
+                    "CD127",
+                    "CD161"
+                  ]
+                },
+                {
+                  "name": "gdT CD158b+",
+                  "negative_markers": [
+                    "CD127",
+                    "CD158e1",
+                    "TCRVa7.2"
+                  ],
+                  "positive_markers": [
+                    "CD158b",
+                    "CD56",
+                    "CD94",
+                    "TCR"
+                  ]
+                }
+              ],
+              "name": "NK_extended_axis",
+              "negative_markers": [
+                "CD19",
+                "CD3"
+              ],
+              "positive_markers": [
+                "CD122",
+                "CD335",
+                "CD56",
+                "CD94"
+              ]
+            },
+            {
+              "name": "ILC1",
+              "negative_markers": [
+                "CD158e1",
+                "CD16"
+              ],
+              "positive_markers": [
+                "CD127",
+                "CD161",
+                "CD49a"
+              ]
+            }
+          ],
+          "name": "innate_lymphoid",
+          "negative_markers": [
+            "CD19",
+            "CD3"
+          ],
+          "positive_markers": [
+            "CD122",
+            "CD161",
+            "CD56",
+            "CD94"
+          ]
+        }
+      ],
+      "name": "lymphoid",
+      "negative_markers": [
+        "CD14",
+        "CD33",
+        "CD36",
+        "CD71"
+      ],
+      "positive_markers": [
+        "CD19",
+        "CD20",
+        "CD3",
+        "CD56",
+        "TCR"
+      ]
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "name": "CD14+ Mono",
+              "negative_markers": [
+                "CD16"
+              ],
+              "positive_markers": [
+                "CD11b",
+                "CD14",
+                "CD33",
+                "CD64"
+              ]
+            },
+            {
+              "name": "CD16+ Mono",
+              "negative_markers": [
+                "CD14"
+              ],
+              "positive_markers": [
+                "CD11c",
+                "CD16",
+                "CD172a"
+              ]
+            }
+          ],
+          "name": "monocyte",
+          "negative_markers": [
+            "CD123"
+          ],
+          "positive_markers": [
+            "CD11b",
+            "CD14",
+            "CD33",
+            "CD64"
+          ]
+        },
+        {
+          "children": [
+            {
+              "name": "pDC",
+              "negative_markers": [
+                "CD11c"
+              ],
+              "positive_markers": [
+                "CD123",
+                "CD303",
+                "CD304"
+              ]
+            },
+            {
+              "name": "cDC2",
+              "negative_markers": [
+                "CD123"
+              ],
+              "positive_markers": [
+                "CD11c",
+                "CD1c",
+                "FceRIa",
+                "HLA-DR"
+              ]
+            }
+          ],
+          "name": "DC",
+          "negative_markers": [
+            "CD11b",
+            "CD14"
+          ],
+          "positive_markers": [
+            "HLA-DR"
+          ]
+        }
+      ],
+      "name": "myeloid",
+      "negative_markers": [
+        "CD19",
+        "CD20",
+        "CD3"
+      ],
+      "positive_markers": [
+        "CD11c",
+        "CD14",
+        "CD33",
+        "HLA-DR"
+      ]
+    },
+    {
+      "children": [
+        {
+          "name": "HSC",
+          "negative_markers": [
+            "CD38",
+            "CD45RA",
+            "HLA-DR"
+          ],
+          "positive_markers": []
+        },
+        {
+          "name": "Lymph prog",
+          "negative_markers": [
+            "CD3",
+            "CD45"
+          ],
+          "positive_markers": [
+            "CD24",
+            "CD38",
+            "CD81",
+            "HLA-DR"
+          ]
+        },
+        {
+          "name": "G/M prog",
+          "negative_markers": [
+            "CD45",
+            "CD7"
+          ],
+          "positive_markers": [
+            "CD123",
+            "CD33",
+            "HLA-DR"
+          ]
+        },
+        {
+          "name": "MK/E prog",
+          "negative_markers": [
+            "CD45",
+            "CD45RA"
+          ],
+          "positive_markers": [
+            "CD71"
+          ]
+        }
+      ],
+      "name": "progenitor",
+      "negative_markers": [
+        "CD14",
+        "CD19",
+        "CD3",
+        "CD56"
+      ],
+      "positive_markers": []
+    },
+    {
+      "children": [
+        {
+          "name": "Proerythroblast",
+          "negative_markers": [
+            "CD45"
+          ],
+          "positive_markers": [
+            "CD105",
+            "CD36",
+            "CD71"
+          ]
+        },
+        {
+          "name": "Erythroblast",
+          "negative_markers": [
+            "CD45"
+          ],
+          "positive_markers": [
+            "CD36",
+            "CD71"
+          ]
+        },
+        {
+          "name": "Normoblast",
+          "negative_markers": [
+            "CD45"
+          ],
+          "positive_markers": [
+            "CD36"
+          ]
+        },
+        {
+          "name": "Reticulocyte",
+          "negative_markers": [
+            "CD45"
+          ],
+          "positive_markers": [
+            "CD71"
+          ]
+        }
+      ],
+      "name": "erythroid",
+      "negative_markers": [
+        "CD19",
+        "CD3",
+        "CD45",
+        "HLA-DR"
+      ],
+      "positive_markers": [
+        "CD36",
+        "CD71"
+      ]
+    }
+  ],
+  "name": "root",
+  "negative_markers": [],
+  "positive_markers": []
+}

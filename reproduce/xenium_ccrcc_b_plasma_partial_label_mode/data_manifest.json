@@ -1,0 +1,27 @@
+{
+  "dataset": "xenium_ccrcc_b_plasma_partial_label_mode",
+  "title": "Xenium ccRCC B/plasma partial-label mode",
+  "description": "Xenium ccRCC partial-label analysis with B and plasma-cell states resolved through the marker tree.",
+  "zenodo_doi": "coming soon",
+  "expected_files": [
+    {
+      "path": "data/reference.h5ad",
+      "description": "labeled reference RNA AnnData"
+    },
+    {
+      "path": "data/query.h5ad",
+      "description": "query RNA-protein AnnData"
+    },
+    {
+      "path": "data/marker_tree.json",
+      "description": "hierarchical protein marker tree included in this repository"
+    }
+  ],
+  "default_columns": {
+    "batch_key": "batch",
+    "celltype_key": "cell_type",
+    "query_label_key": null,
+    "sample_key": "batch"
+  },
+  "notes": "Large .h5ad files and optional totalVI initialization models are distributed separately from GitHub."
+}

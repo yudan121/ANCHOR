@@ -1,0 +1,27 @@
+{
+  "dataset": "marrowatlas",
+  "title": "MarrowAtlas",
+  "description": "Donor-held-out MarrowAtlas CITE-seq benchmark with fine-grained hematopoietic labels.",
+  "zenodo_doi": "coming soon",
+  "expected_files": [
+    {
+      "path": "data/reference.h5ad",
+      "description": "labeled reference RNA AnnData"
+    },
+    {
+      "path": "data/query.h5ad",
+      "description": "query RNA-protein AnnData"
+    },
+    {
+      "path": "data/marker_tree.json",
+      "description": "hierarchical protein marker tree included in this repository"
+    }
+  ],
+  "default_columns": {
+    "batch_key": "batch",
+    "celltype_key": "cell_type",
+    "query_label_key": "cell_type",
+    "sample_key": null
+  },
+  "notes": "Large .h5ad files and optional totalVI initialization models are distributed separately from GitHub."
+}

@@ -1,0 +1,571 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "name": "B naive",
+          "negative_markers": [
+            "CD38-1",
+            "CD38-2"
+          ],
+          "positive_markers": [
+            "CD19",
+            "CD20",
+            "CD79b",
+            "IgD",
+            "IgM"
+          ]
+        },
+        {
+          "name": "B intermediate",
+          "negative_markers": [],
+          "positive_markers": [
+            "CD19",
+            "CD20",
+            "CD24",
+            "CD38-1",
+            "CD38-2",
+            "IgM"
+          ]
+        },
+        {
+          "name": "B memory",
+          "negative_markers": [
+            "IgD"
+          ],
+          "positive_markers": [
+            "CD19",
+            "CD20",
+            "CD21",
+            "CD27",
+            "CD79b"
+          ]
+        },
+        {
+          "name": "Plasmablast",
+          "negative_markers": [
+            "CD20"
+          ],
+          "positive_markers": [
+            "CD27",
+            "CD38-1",
+            "CD38-2",
+            "CD71"
+          ]
+        }
+      ],
+      "name": "B lineage",
+      "negative_markers": [
+        "CD14",
+        "CD16",
+        "CD3-1",
+        "CD3-2"
+      ],
+      "positive_markers": [
+        "CD19",
+        "CD20",
+        "CD79b",
+        "IgD",
+        "IgM"
+      ]
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "name": "CD4 Naive",
+              "negative_markers": [
+                "CD45RO"
+              ],
+              "positive_markers": [
+                "CD4-1",
+                "CD4-2",
+                "CD45RA"
+              ]
+            },
+            {
+              "name": "CD4 TCM",
+              "negative_markers": [
+                "CD45RA"
+              ],
+              "positive_markers": [
+                "CD127",
+                "CD27",
+                "CD4-1",
+                "CD4-2",
+                "CD45RO"
+              ]
+            },
+            {
+              "name": "CD4 TEM",
+              "negative_markers": [
+                "CD45RA"
+              ],
+              "positive_markers": [
+                "CD127",
+                "CD4-1",
+                "CD4-2",
+                "CD45RO"
+              ]
+            },
+            {
+              "name": "CD4 CTL",
+              "negative_markers": [],
+              "positive_markers": [
+                "CD314",
+                "CD4-1",
+                "CD4-2",
+                "CD57"
+              ]
+            },
+            {
+              "name": "Treg",
+              "negative_markers": [
+                "CD127"
+              ],
+              "positive_markers": [
+                "CD25",
+                "CD4-1",
+                "CD4-2"
+              ]
+            },
+            {
+              "name": "CD4 Proliferating",
+              "negative_markers": [],
+              "positive_markers": [
+                "CD38-1",
+                "CD38-2",
+                "CD4-1",
+                "CD4-2"
+              ]
+            }
+          ],
+          "name": "CD4 T lineage",
+          "negative_markers": [
+            "CD8",
+            "CD8a"
+          ],
+          "positive_markers": [
+            "CD3-1",
+            "CD3-2",
+            "CD4-1",
+            "CD4-2"
+          ]
+        },
+        {
+          "children": [
+            {
+              "name": "CD8 Naive",
+              "negative_markers": [
+                "CD45RO"
+              ],
+              "positive_markers": [
+                "CD45RA",
+                "CD8",
+                "CD8a"
+              ]
+            },
+            {
+              "name": "CD8 TCM",
+              "negative_markers": [
+                "CD45RA"
+              ],
+              "positive_markers": [
+                "CD127",
+                "CD27",
+                "CD45RO",
+                "CD8",
+                "CD8a"
+              ]
+            },
+            {
+              "name": "CD8 TEM",
+              "negative_markers": [
+                "CD45RA"
+              ],
+              "positive_markers": [
+                "CD314",
+                "CD45RO",
+                "CD57",
+                "CD8",
+                "CD8a"
+              ]
+            },
+            {
+              "name": "CD8 Proliferating",
+              "negative_markers": [],
+              "positive_markers": [
+                "CD314",
+                "CD38-1",
+                "CD38-2",
+                "CD8",
+                "CD8a"
+              ]
+            }
+          ],
+          "name": "CD8 T lineage",
+          "negative_markers": [
+            "CD4-1",
+            "CD4-2"
+          ],
+          "positive_markers": [
+            "CD3-1",
+            "CD3-2",
+            "CD8",
+            "CD8a"
+          ]
+        },
+        {
+          "children": [
+            {
+              "name": "MAIT",
+              "negative_markers": [],
+              "positive_markers": [
+                "CD161",
+                "TCR-V-7.2"
+              ]
+            },
+            {
+              "name": "gdT",
+              "negative_markers": [],
+              "positive_markers": [
+                "TCR-V-2",
+                "TCR-V-9"
+              ]
+            },
+            {
+              "name": "dnT",
+              "negative_markers": [
+                "CD4-1",
+                "CD4-2",
+                "CD8",
+                "CD8a"
+              ],
+              "positive_markers": [
+                "CD3-1",
+                "CD3-2"
+              ]
+            }
+          ],
+          "name": "innate-like T lineage",
+          "negative_markers": [],
+          "positive_markers": [
+            "CD161",
+            "CD3-1",
+            "CD3-2",
+            "TCR-V-2",
+            "TCR-V-7.2",
+            "TCR-V-9"
+          ]
+        }
+      ],
+      "name": "T lineage",
+      "negative_markers": [
+        "CD14",
+        "CD19",
+        "CD20"
+      ],
+      "positive_markers": [
+        "CD2",
+        "CD3-1",
+        "CD3-2"
+      ]
+    },
+    {
+      "children": [
+        {
+          "name": "NK",
+          "negative_markers": [
+            "CD3-1",
+            "CD3-2"
+          ],
+          "positive_markers": [
+            "CD16",
+            "CD335",
+            "CD337",
+            "CD56-1",
+            "CD56-2"
+          ]
+        },
+        {
+          "name": "NK_CD56bright",
+          "negative_markers": [
+            "CD16",
+            "CD3-1",
+            "CD3-2"
+          ],
+          "positive_markers": [
+            "CD335",
+            "CD56-1",
+            "CD56-2"
+          ]
+        },
+        {
+          "name": "NK Proliferating",
+          "negative_markers": [
+            "CD3-1",
+            "CD3-2"
+          ],
+          "positive_markers": [
+            "CD16",
+            "CD38-1",
+            "CD38-2",
+            "CD56-1",
+            "CD56-2"
+          ]
+        },
+        {
+          "name": "ILC",
+          "negative_markers": [
+            "CD16",
+            "CD3-1",
+            "CD3-2"
+          ],
+          "positive_markers": [
+            "CD117",
+            "CD127",
+            "CD161",
+            "CD25"
+          ]
+        }
+      ],
+      "name": "NK/ILC lineage",
+      "negative_markers": [
+        "CD14",
+        "CD19",
+        "CD3-1",
+        "CD3-2"
+      ],
+      "positive_markers": [
+        "CD117",
+        "CD127",
+        "CD16",
+        "CD161",
+        "CD335",
+        "CD337",
+        "CD56-1",
+        "CD56-2"
+      ]
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "name": "CD14 Mono",
+              "negative_markers": [
+                "CD123",
+                "CD16",
+                "CD1c"
+              ],
+              "positive_markers": [
+                "CD11b-1",
+                "CD11b-2",
+                "CD14",
+                "CD35",
+                "CD36",
+                "CD55",
+                "CD64"
+              ]
+            },
+            {
+              "name": "CD16 Mono",
+              "negative_markers": [
+                "CD123",
+                "CD14",
+                "CD1c"
+              ],
+              "positive_markers": [
+                "CD11c",
+                "CD16",
+                "CX3CR1"
+              ]
+            },
+            {
+              "name": "cDC1",
+              "negative_markers": [
+                "CD11b-1",
+                "CD11b-2",
+                "CD123",
+                "CD14",
+                "CD1c",
+                "CD64"
+              ],
+              "positive_markers": [
+                "CD141",
+                "HLA-DR"
+              ]
+            },
+            {
+              "name": "cDC2",
+              "negative_markers": [
+                "CD11b-1",
+                "CD11b-2",
+                "CD123",
+                "CD14",
+                "CD35",
+                "CD36",
+                "CD55",
+                "CD64"
+              ],
+              "positive_markers": [
+                "CD1c",
+                "HLA-DR"
+              ]
+            }
+          ],
+          "name": "Mono/cDC lineage",
+          "negative_markers": [
+            "CD123",
+            "CD303",
+            "CD304"
+          ],
+          "positive_markers": [
+            "CD11b-1",
+            "CD11b-2",
+            "CD14",
+            "CD141",
+            "CD16",
+            "CD1c",
+            "CD64"
+          ]
+        },
+        {
+          "children": [
+            {
+              "name": "pDC",
+              "negative_markers": [
+                "CD11c",
+                "CD14",
+                "CD1c",
+                "CD86"
+              ],
+              "positive_markers": [
+                "CD123",
+                "CD303",
+                "CD304"
+              ]
+            },
+            {
+              "name": "ASDC",
+              "negative_markers": [
+                "CD14",
+                "CD303",
+                "CD304"
+              ],
+              "positive_markers": [
+                "CD123",
+                "CD86",
+                "HLA-DR"
+              ]
+            }
+          ],
+          "name": "pDC-like lineage",
+          "negative_markers": [
+            "CD11b-1",
+            "CD11b-2",
+            "CD14",
+            "CD141",
+            "CD1c",
+            "CD64"
+          ],
+          "positive_markers": [
+            "CD123",
+            "CD303",
+            "CD304"
+          ]
+        }
+      ],
+      "name": "Myeloid/DC lineage",
+      "negative_markers": [
+        "CD19",
+        "CD3-1",
+        "CD3-2"
+      ],
+      "positive_markers": [
+        "CD11b-1",
+        "CD11b-2",
+        "CD11c",
+        "CD123",
+        "CD14",
+        "CD141",
+        "CD16",
+        "CD1c",
+        "CD303",
+        "CD304",
+        "CD64",
+        "HLA-DR"
+      ]
+    },
+    {
+      "children": [
+        {
+          "name": "HSPC",
+          "negative_markers": [
+            "CD235a",
+            "CD235ab",
+            "CD41",
+            "CD42b"
+          ],
+          "positive_markers": [
+            "CD117",
+            "CD133-1",
+            "CD133-2",
+            "CD34",
+            "CD90"
+          ]
+        },
+        {
+          "name": "Eryth",
+          "negative_markers": [
+            "CD34",
+            "CD41",
+            "CD42b"
+          ],
+          "positive_markers": [
+            "CD235a",
+            "CD235ab",
+            "CD71"
+          ]
+        },
+        {
+          "name": "Platelet",
+          "negative_markers": [
+            "CD235a",
+            "CD235ab",
+            "CD34"
+          ],
+          "positive_markers": [
+            "CD41",
+            "CD42b",
+            "CD61",
+            "CD9"
+          ]
+        }
+      ],
+      "name": "HSPC/Ery/Platelet lineage",
+      "negative_markers": [
+        "CD19",
+        "CD3-1",
+        "CD3-2"
+      ],
+      "positive_markers": [
+        "CD117",
+        "CD133-1",
+        "CD133-2",
+        "CD235a",
+        "CD235ab",
+        "CD34",
+        "CD41",
+        "CD42b",
+        "CD61",
+        "CD71",
+        "CD9"
+      ]
+    }
+  ],
+  "name": "root",
+  "negative_markers": [],
+  "positive_markers": []
+}

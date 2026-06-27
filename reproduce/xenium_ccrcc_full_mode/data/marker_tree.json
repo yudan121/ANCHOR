@@ -1,0 +1,272 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "name": "CD4 naive T",
+                  "negative_markers": [
+                    "CD45RO-1",
+                    "PD-1",
+                    "LAG-3",
+                    "Ki-67"
+                  ],
+                  "positive_markers": [
+                    "CD45RA-1"
+                  ]
+                },
+                {
+                  "name": "CD4 Treg",
+                  "negative_markers": [
+                    "CD8A-1"
+                  ],
+                  "positive_markers": [
+                    "CD4-1"
+                  ]
+                },
+                {
+                  "name": "CD4 activated / effector T",
+                  "negative_markers": [
+                    "CD45RA-1"
+                  ],
+                  "positive_markers": [
+                    "CD45RO-1",
+                    "PD-1",
+                    "LAG-3",
+                    "Ki-67"
+                  ]
+                }
+              ],
+              "name": "CD4 T",
+              "negative_markers": [
+                "CD8A-1"
+              ],
+              "positive_markers": [
+                "CD4-1"
+              ]
+            },
+            {
+              "children": [
+                {
+                  "name": "CD8 exhausted T",
+                  "negative_markers": [
+                    "CD45RA-1"
+                  ],
+                  "positive_markers": [
+                    "PD-1",
+                    "LAG-3",
+                    "CD45RO-1"
+                  ]
+                },
+                {
+                  "name": "CD8 tissue-resident-like T",
+                  "negative_markers": [],
+                  "positive_markers": []
+                },
+                {
+                  "name": "CD8 proliferating T",
+                  "negative_markers": [],
+                  "positive_markers": [
+                    "Ki-67",
+                    "PCNA-1"
+                  ]
+                }
+              ],
+              "name": "CD8 T",
+              "negative_markers": [
+                "CD4-1"
+              ],
+              "positive_markers": [
+                "CD8A-1"
+              ]
+            },
+            {
+              "name": "NK / NK-like cytotoxic",
+              "negative_markers": [
+                "CD4-1",
+                "CD20"
+              ],
+              "positive_markers": [
+                "GranzymeB"
+              ]
+            }
+          ],
+          "name": "T/NK compartment",
+          "negative_markers": [
+            "CD20",
+            "CD68-1"
+          ],
+          "positive_markers": [
+            "CD3E-1",
+            "CD4-1",
+            "CD8A-1",
+            "GranzymeB"
+          ]
+        },
+        {
+          "name": "B cell",
+          "negative_markers": [
+            "CD3E-1",
+            "CD68-1"
+          ],
+          "positive_markers": [
+            "CD20"
+          ]
+        },
+        {
+          "children": [
+            {
+              "name": "CD14 monocyte",
+              "negative_markers": [
+                "CD3E-1",
+                "CD20",
+                "CD16",
+                "CD163-1"
+              ],
+              "positive_markers": [
+                "HLA-DR"
+              ]
+            },
+            {
+              "name": "CD16 monocyte",
+              "negative_markers": [
+                "CD3E-1",
+                "CD20",
+                "CD163-1"
+              ],
+              "positive_markers": [
+                "CD16",
+                "HLA-DR"
+              ]
+            },
+            {
+              "name": "TAM / macrophage",
+              "negative_markers": [
+                "CD3E-1",
+                "CD20"
+              ],
+              "positive_markers": [
+                "CD68-1",
+                "CD163-1",
+                "HLA-DR",
+                "VISTA"
+              ]
+            },
+            {
+              "name": "cDC2",
+              "negative_markers": [
+                "CD3E-1",
+                "CD20",
+                "CD163-1"
+              ],
+              "positive_markers": [
+                "CD11c",
+                "HLA-DR"
+              ]
+            },
+            {
+              "name": "cDC1/pDC",
+              "negative_markers": [
+                "CD3E-1",
+                "CD20",
+                "CD163-1"
+              ],
+              "positive_markers": [
+                "HLA-DR"
+              ]
+            }
+          ],
+          "name": "myeloid",
+          "negative_markers": [
+            "CD3E-1",
+            "CD20"
+          ],
+          "positive_markers": [
+            "CD68-1",
+            "CD163-1",
+            "HLA-DR",
+            "CD11c",
+            "CD16"
+          ]
+        },
+        {
+          "name": "Mast",
+          "negative_markers": [],
+          "positive_markers": []
+        }
+      ],
+      "name": "immune",
+      "negative_markers": [
+        "PanCK",
+        "E-Cadherin",
+        "CD31",
+        "alphaSMA"
+      ],
+      "positive_markers": [
+        "CD45"
+      ]
+    },
+    {
+      "children": [
+        {
+          "name": "Tumor epithelial compartment",
+          "negative_markers": [
+            "CD45",
+            "CD31"
+          ],
+          "positive_markers": [
+            "PanCK"
+          ]
+        },
+        {
+          "name": "Renal epithelial compartment",
+          "negative_markers": [
+            "CD45",
+            "CD31"
+          ],
+          "positive_markers": [
+            "PanCK"
+          ]
+        }
+      ],
+      "name": "epithelial",
+      "negative_markers": [
+        "CD45",
+        "CD31"
+      ],
+      "positive_markers": [
+        "PanCK",
+        "E-Cadherin",
+        "Beta-catenin"
+      ]
+    },
+    {
+      "name": "Endothelial",
+      "negative_markers": [
+        "CD45",
+        "PanCK"
+      ],
+      "positive_markers": [
+        "CD31"
+      ]
+    },
+    {
+      "name": "Myofibroblast / stromal",
+      "negative_markers": [
+        "CD45",
+        "PanCK",
+        "CD31"
+      ],
+      "positive_markers": [
+        "alphaSMA",
+        "Vimentin"
+      ]
+    }
+  ],
+  "name": "root",
+  "negative_markers": [],
+  "positive_markers": []
+}

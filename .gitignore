@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Local data and results
+*.h5ad
+*.h5
+*.loom
+*.zarr/
+totalvi_init_model/
+results/
+logs/
+*.log
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/

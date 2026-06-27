@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "anchor-multimodal"
+version = "1.0.0"
+description = "ANCHOR: marker-guided RNA-protein cell type annotation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "GPL-3.0-only" }
+authors = [
+  { name = "Yang Lab" }
+]
+dependencies = [
+  "anndata",
+  "matplotlib",
+  "numpy",
+  "pandas",
+  "scanpy",
+  "scikit-learn",
+  "scipy",
+  "seaborn",
+  "torch",
+  "scvi-tools"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["anchor*"]
+

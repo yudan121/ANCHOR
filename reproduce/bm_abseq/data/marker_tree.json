@@ -1,0 +1,610 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "name": "Mature naive B cells",
+              "negative_markers": [
+                "CD11c-AB",
+                "CD27-AB",
+                "IgG-AB"
+              ],
+              "positive_markers": [
+                "CD20-AB",
+                "IgD-AB"
+              ]
+            },
+            {
+              "children": [
+                {
+                  "name": "Nonswitched memory B cells",
+                  "negative_markers": [
+                    "CD11c-AB",
+                    "IgG-AB"
+                  ],
+                  "positive_markers": [
+                    "IgD-AB"
+                  ]
+                },
+                {
+                  "name": "Class switched memory B cells",
+                  "negative_markers": [
+                    "IgD-AB"
+                  ],
+                  "positive_markers": [
+                    "CD27-AB",
+                    "IgG-AB"
+                  ]
+                }
+              ],
+              "name": "Memory B axis",
+              "negative_markers": [
+                "IgD-AB"
+              ],
+              "positive_markers": [
+                "CD27-AB",
+                "IgG-AB"
+              ]
+            }
+          ],
+          "name": "Mature B axis",
+          "negative_markers": [
+            "CD10-AB",
+            "CD38-AB"
+          ],
+          "positive_markers": [
+            "CD19-AB",
+            "CD20-AB",
+            "IgD-AB"
+          ]
+        },
+        {
+          "name": "Plasma cells",
+          "negative_markers": [
+            "CD20-AB",
+            "IgD-AB"
+          ],
+          "positive_markers": [
+            "CD27-AB",
+            "CD38-AB",
+            "IgG-AB"
+          ]
+        },
+        {
+          "name": "Immature B cells",
+          "negative_markers": [
+            "IgG-AB"
+          ],
+          "positive_markers": [
+            "CD10-AB",
+            "CD19-AB",
+            "CD38-AB"
+          ]
+        },
+        {
+          "children": [
+            {
+              "name": "Pre-pro-B cells",
+              "negative_markers": [
+                "CD19-AB"
+              ],
+              "positive_markers": [
+                "CD34-AB",
+                "CD38-AB"
+              ]
+            },
+            {
+              "name": "Pro-B cells",
+              "negative_markers": [
+                "CD19-AB"
+              ],
+              "positive_markers": [
+                "CD10-AB",
+                "CD34-AB",
+                "CD81-AB"
+              ]
+            },
+            {
+              "name": "Pre-B cells",
+              "negative_markers": [
+                "CD34-AB"
+              ],
+              "positive_markers": [
+                "CD10-AB",
+                "CD19-AB",
+                "CD81-AB"
+              ]
+            }
+          ],
+          "name": "Early B axis",
+          "negative_markers": [
+            "CD27-AB",
+            "IgD-AB"
+          ],
+          "positive_markers": [
+            "CD10-AB",
+            "CD34-AB",
+            "CD81-AB"
+          ]
+        }
+      ],
+      "name": "B lineage",
+      "negative_markers": [
+        "CD16-AB",
+        "CD3-AB",
+        "CD34-AB"
+      ],
+      "positive_markers": [
+        "CD19-AB",
+        "CD20-AB",
+        "IgD-AB"
+      ]
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "name": "CD4+ naive T cells",
+              "negative_markers": [
+                "CD18-AB",
+                "CD69-AB"
+              ],
+              "positive_markers": [
+                "CD27-AB",
+                "CD4-AB",
+                "CD45RA-AB"
+              ]
+            },
+            {
+              "children": [
+                {
+                  "name": "CD4+ memory T cells",
+                  "negative_markers": [
+                    "CD18-AB",
+                    "CD69-AB"
+                  ],
+                  "positive_markers": [
+                    "CD27-AB",
+                    "CD4-AB"
+                  ]
+                },
+                {
+                  "name": "CD69+PD-1+ memory CD4+ T cells",
+                  "negative_markers": [
+                    "CD45RA-AB"
+                  ],
+                  "positive_markers": [
+                    "CD18-AB",
+                    "CD4-AB",
+                    "CD69-AB"
+                  ]
+                }
+              ],
+              "name": "CD4 memory axis",
+              "negative_markers": [
+                "CD45RA-AB"
+              ],
+              "positive_markers": [
+                "CD4-AB"
+              ]
+            }
+          ],
+          "name": "CD4 helper axis",
+          "negative_markers": [
+            "CD8-AB",
+            "TCRgd-AB"
+          ],
+          "positive_markers": [
+            "CD4-AB",
+            "CD5-AB"
+          ]
+        },
+        {
+          "children": [
+            {
+              "name": "CD8+ naive T cells",
+              "negative_markers": [
+                "CD69-AB"
+              ],
+              "positive_markers": [
+                "CD27-AB",
+                "CD45RA-AB",
+                "CD8-AB"
+              ]
+            },
+            {
+              "name": "CD8+ central memory T cells",
+              "negative_markers": [
+                "CD45RA-AB"
+              ],
+              "positive_markers": [
+                "CD27-AB",
+                "CD8-AB"
+              ]
+            },
+            {
+              "name": "CD8+ effector memory T cells",
+              "negative_markers": [
+                "CD27-AB"
+              ],
+              "positive_markers": [
+                "CD18-AB",
+                "CD314-AB",
+                "CD8-AB"
+              ]
+            },
+            {
+              "name": "CD8+CD103+ tissue resident memory T cells",
+              "negative_markers": [
+                "CD45RA-AB"
+              ],
+              "positive_markers": [
+                "CD103-AB",
+                "CD69-AB",
+                "CD8-AB"
+              ]
+            }
+          ],
+          "name": "CD8 axis",
+          "negative_markers": [
+            "CD4-AB",
+            "TCRgd-AB"
+          ],
+          "positive_markers": [
+            "CD27-AB",
+            "CD8-AB"
+          ]
+        },
+        {
+          "name": "GammaDelta T cells",
+          "negative_markers": [
+            "CD4-AB"
+          ],
+          "positive_markers": [
+            "CD3-AB",
+            "TCRgd-AB"
+          ]
+        }
+      ],
+      "name": "T lineage",
+      "negative_markers": [
+        "CD16-AB",
+        "CD19-AB",
+        "CD34-AB"
+      ],
+      "positive_markers": [
+        "CD2-AB",
+        "CD3-AB",
+        "CD5-AB"
+      ]
+    },
+    {
+      "children": [
+        {
+          "name": "CD56brightCD16- NK cells",
+          "negative_markers": [
+            "CD16-AB",
+            "CD34-AB"
+          ],
+          "positive_markers": [
+            "CD56-AB",
+            "CD62L-AB"
+          ]
+        },
+        {
+          "name": "CD56dimCD16+ NK cells",
+          "negative_markers": [
+            "CD34-AB",
+            "CD62L-AB"
+          ],
+          "positive_markers": [
+            "CD16-AB"
+          ]
+        },
+        {
+          "name": "NK cell progenitors",
+          "negative_markers": [
+            "CD56-AB"
+          ],
+          "positive_markers": [
+            "CD34-AB",
+            "CD45RA-AB"
+          ]
+        }
+      ],
+      "name": "NK lineage",
+      "negative_markers": [
+        "CD14-AB",
+        "CD19-AB",
+        "CD3-AB"
+      ],
+      "positive_markers": [
+        "CD16-AB",
+        "CD56-AB",
+        "CD7-AB"
+      ]
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "name": "Classical Monocytes",
+              "negative_markers": [
+                "CD16-AB"
+              ],
+              "positive_markers": [
+                "CD14-AB"
+              ]
+            },
+            {
+              "name": "Non-classical monocytes",
+              "negative_markers": [
+                "CD14-AB"
+              ],
+              "positive_markers": [
+                "CD11c-AB",
+                "CD16-AB"
+              ]
+            }
+          ],
+          "name": "Monocyte axis",
+          "negative_markers": [
+            "CD123-AB",
+            "CD141-AB",
+            "CD1c-AB"
+          ],
+          "positive_markers": [
+            "CD14-AB",
+            "CD16-AB",
+            "CD18-AB"
+          ]
+        },
+        {
+          "children": [
+            {
+              "name": "Conventional dendritic cell 1",
+              "negative_markers": [
+                "CD16-AB",
+                "CD1c-AB"
+              ],
+              "positive_markers": [
+                "CD141-AB"
+              ]
+            },
+            {
+              "name": "Conventional dendritic cell 2",
+              "negative_markers": [
+                "CD123-AB",
+                "CD141-AB"
+              ],
+              "positive_markers": [
+                "CD11c-AB",
+                "CD1c-AB"
+              ]
+            },
+            {
+              "children": [
+                {
+                  "name": "Plasmacytoid dendritic cell progenitors",
+                  "negative_markers": [
+                    "CD45RA-AB"
+                  ],
+                  "positive_markers": [
+                    "CD123-AB",
+                    "CD38-AB"
+                  ]
+                },
+                {
+                  "name": "Plasmacytoid dendritic cells",
+                  "negative_markers": [
+                    "CD38-AB"
+                  ],
+                  "positive_markers": [
+                    "CD123-AB",
+                    "CD45RA-AB"
+                  ]
+                }
+              ],
+              "name": "pDC axis",
+              "negative_markers": [
+                "CD11c-AB",
+                "CD1c-AB"
+              ],
+              "positive_markers": [
+                "CD123-AB"
+              ]
+            }
+          ],
+          "name": "Dendritic axis",
+          "negative_markers": [
+            "CD14-AB",
+            "CD16-AB"
+          ],
+          "positive_markers": [
+            "CD123-AB",
+            "CD141-AB",
+            "CD1c-AB"
+          ]
+        }
+      ],
+      "name": "Monocyte/DC lineage",
+      "negative_markers": [
+        "CD19-AB",
+        "CD3-AB",
+        "CD34-AB"
+      ],
+      "positive_markers": [
+        "CD11c-AB",
+        "CD123-AB",
+        "CD14-AB",
+        "CD18-AB"
+      ]
+    },
+    {
+      "children": [
+        {
+          "name": "HSCs & MPPs",
+          "negative_markers": [
+            "CD18-AB",
+            "CD33-AB",
+            "CD38-AB"
+          ],
+          "positive_markers": [
+            "CD34-AB"
+          ]
+        },
+        {
+          "name": "Lymphomyeloid prog",
+          "negative_markers": [
+            "CD33-AB"
+          ],
+          "positive_markers": [
+            "CD18-AB",
+            "CD34-AB",
+            "HLA.ABC-AB"
+          ]
+        },
+        {
+          "name": "Erythro-myeloid progenitors",
+          "negative_markers": [
+            "CD33-AB"
+          ],
+          "positive_markers": [
+            "CD34-AB",
+            "CD49d-AB",
+            "HLA.ABC-AB"
+          ]
+        },
+        {
+          "name": "Eosinophil-basophil-mast cell progenitors",
+          "negative_markers": [
+            "HLA.ABC-AB"
+          ],
+          "positive_markers": [
+            "CD33-AB",
+            "CD34-AB",
+            "CD38-AB"
+          ]
+        }
+      ],
+      "name": "Stem/Progenitor lineage",
+      "negative_markers": [
+        "CD16-AB",
+        "CD19-AB",
+        "CD3-AB"
+      ],
+      "positive_markers": [
+        "CD34-AB",
+        "HLA.ABC-AB"
+      ]
+    },
+    {
+      "children": [
+        {
+          "name": "Early promyelocytes",
+          "negative_markers": [
+            "CD11c-AB",
+            "CD18-AB"
+          ],
+          "positive_markers": [
+            "CD34-AB",
+            "CD81-AB"
+          ]
+        },
+        {
+          "name": "Late promyelocytes",
+          "negative_markers": [
+            "CD34-AB"
+          ],
+          "positive_markers": [
+            "CD11a-AB",
+            "CD18-AB"
+          ]
+        },
+        {
+          "name": "Myelocytes",
+          "negative_markers": [
+            "CD34-AB"
+          ],
+          "positive_markers": [
+            "CD11c-AB",
+            "CD18-AB",
+            "CD33-AB"
+          ]
+        }
+      ],
+      "name": "Granulocytic lineage",
+      "negative_markers": [
+        "CD19-AB",
+        "CD3-AB"
+      ],
+      "positive_markers": [
+        "CD11c-AB",
+        "CD18-AB",
+        "CD33-AB"
+      ]
+    },
+    {
+      "children": [
+        {
+          "name": "Megakaryocyte progenitors",
+          "negative_markers": [
+            "CD235a-b-AB"
+          ],
+          "positive_markers": [
+            "CD49E-AB",
+            "CD61-AB"
+          ]
+        },
+        {
+          "children": [
+            {
+              "name": "Early erythroid progenitor",
+              "negative_markers": [
+                "CD235a-b-AB"
+              ],
+              "positive_markers": [
+                "CD34-AB",
+                "CD38-AB"
+              ]
+            },
+            {
+              "name": "Late erythroid progenitor",
+              "negative_markers": [
+                "CD34-AB"
+              ],
+              "positive_markers": [
+                "CD235a-b-AB"
+              ]
+            }
+          ],
+          "name": "Erythroid axis",
+          "negative_markers": [
+            "CD61-AB"
+          ],
+          "positive_markers": [
+            "CD235a-b-AB",
+            "CD49d-AB"
+          ]
+        }
+      ],
+      "name": "Meg/Ery lineage",
+      "negative_markers": [
+        "CD19-AB",
+        "CD3-AB"
+      ],
+      "positive_markers": [
+        "CD235a-b-AB",
+        "CD34-AB",
+        "CD61-AB"
+      ]
+    }
+  ],
+  "name": "root",
+  "negative_markers": [],
+  "positive_markers": []
+}

@@ -1,0 +1,150 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [],
+          "name": "A1",
+          "negative_markers": [],
+          "positive_markers": []
+        },
+        {
+          "children": [],
+          "name": "A2",
+          "negative_markers": [],
+          "positive_markers": []
+        },
+        {
+          "children": [],
+          "name": "A3",
+          "negative_markers": [],
+          "positive_markers": []
+        }
+      ],
+      "name": "Lineage_A",
+      "negative_markers": [
+        "P05",
+        "P08",
+        "P12"
+      ],
+      "positive_markers": [
+        "P01"
+      ]
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "name": "B1",
+          "negative_markers": [
+            "P07"
+          ],
+          "positive_markers": [
+            "P06"
+          ]
+        },
+        {
+          "children": [],
+          "name": "B2",
+          "negative_markers": [
+            "P06"
+          ],
+          "positive_markers": [
+            "P07"
+          ]
+        }
+      ],
+      "name": "Lineage_B",
+      "negative_markers": [
+        "P01",
+        "P08",
+        "P12"
+      ],
+      "positive_markers": [
+        "P05"
+      ]
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "name": "C1",
+          "negative_markers": [
+            "P10"
+          ],
+          "positive_markers": [
+            "P09"
+          ]
+        },
+        {
+          "children": [],
+          "name": "C2",
+          "negative_markers": [
+            "P09"
+          ],
+          "positive_markers": [
+            "P10"
+          ]
+        }
+      ],
+      "name": "Lineage_C",
+      "negative_markers": [
+        "P01",
+        "P05",
+        "P12"
+      ],
+      "positive_markers": [
+        "P08"
+      ]
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "name": "D1",
+          "negative_markers": [
+            "P14",
+            "P15"
+          ],
+          "positive_markers": [
+            "P13"
+          ]
+        },
+        {
+          "children": [],
+          "name": "D2",
+          "negative_markers": [
+            "P13",
+            "P15"
+          ],
+          "positive_markers": [
+            "P14"
+          ]
+        },
+        {
+          "children": [],
+          "name": "D3",
+          "negative_markers": [
+            "P13",
+            "P14"
+          ],
+          "positive_markers": [
+            "P15"
+          ]
+        }
+      ],
+      "name": "Lineage_D",
+      "negative_markers": [
+        "P01",
+        "P05",
+        "P08"
+      ],
+      "positive_markers": [
+        "P12"
+      ]
+    }
+  ],
+  "name": "root",
+  "negative_markers": [],
+  "positive_markers": []
+}
