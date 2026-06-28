@@ -137,7 +137,7 @@ The original public datasets used in the ANCHOR experiments are available from t
 
 ## System requirements
 
-ANCHOR depends on `anndata`, `scanpy`, `scvi-tools`, `torch`, `numpy`, `pandas`, `scikit-learn`, `scipy`, `matplotlib`, and `seaborn`. Full benchmark-scale runs were tested on Linux servers with NVIDIA GPUs. Small input-validation and student-only checks can be run on CPU, but full teacher training is expected to be slow without GPU acceleration.
+ANCHOR depends on `anndata`, `scanpy`, `scvi-tools`, `torch`, `numpy`, `pandas`, `scikit-learn`, `scipy`, `matplotlib`, and `seaborn`. Full benchmark-scale runs were tested on Linux servers with NVIDIA GPUs.
 
 ## Version history
 
