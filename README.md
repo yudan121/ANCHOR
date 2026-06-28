@@ -118,7 +118,7 @@ See `reproduce/README.md` for details.
 
 ## Data availability
 
-The processed input files for reproducing the ANCHOR experiments will be deposited on Zenodo. Zenodo DOI: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18872086.svg)](https://doi.org/10.5281/zenodo.20965819).
+The processed input files for reproducing the ANCHOR experiments will be deposited on Zenodo. Zenodo DOI: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18872086.svg)](https://doi.org/10.5281/zenodo.20965819)
 
 The original public datasets used in the ANCHOR experiments are available from the following sources:
 
