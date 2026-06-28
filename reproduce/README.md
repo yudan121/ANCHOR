@@ -12,7 +12,7 @@ Each dataset folder expects:
 <dataset>/data/marker_tree.json
 ```
 
-The marker trees are included in this repository. The `.h5ad` files are distributed separately through Zenodo: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18872086.svg)](https://doi.org/10.5281/zenodo.20965819).
+The marker trees are included in this repository. The `.h5ad` files are distributed separately through Zenodo: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18872086.svg)](https://doi.org/10.5281/zenodo.20965819)
 
 ## Common environment variables
 
