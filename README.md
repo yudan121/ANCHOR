@@ -118,7 +118,7 @@ See `reproduce/README.md` for details.
 
 ## Data availability
 
-The processed input files for reproducing the ANCHOR experiments will be deposited on Zenodo. Zenodo DOI: **coming soon**.
+The processed input files for reproducing the ANCHOR experiments will be deposited on Zenodo. Zenodo DOI: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18872086.svg)](https://doi.org/10.5281/zenodo.20965819)
 
 The original public datasets used in the ANCHOR experiments are available from the following sources:
 
@@ -137,7 +137,7 @@ The original public datasets used in the ANCHOR experiments are available from t
 
 ## System requirements
 
-ANCHOR depends on `anndata`, `scanpy`, `scvi-tools`, `torch`, `numpy`, `pandas`, `scikit-learn`, `scipy`, `matplotlib`, and `seaborn`. Full benchmark-scale runs were tested on Linux servers with NVIDIA GPUs. Small input-validation and student-only checks can be run on CPU, but full teacher training is expected to be slow without GPU acceleration.
+ANCHOR depends on `anndata`, `scanpy`, `scvi-tools`, `torch`, `numpy`, `pandas`, `scikit-learn`, `scipy`, `matplotlib`, and `seaborn`. Full benchmark-scale runs were tested on Linux servers with NVIDIA GPUs.
 
 ## Version history
 
